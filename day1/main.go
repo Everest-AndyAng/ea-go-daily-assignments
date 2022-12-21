@@ -12,7 +12,11 @@ func Add(x int, y int) int {
 	return x + y
 }
 
-func Divide(x int, y int) (int, error) {
+func Subtract(x int, y int) int {
+	return x - y
+}
+
+func Divide(x float64, y float64) (float64, error) {
 	if y == 0 {
 		return 0, errors.New("Divide by zero")
 	} else {
@@ -20,16 +24,16 @@ func Divide(x int, y int) (int, error) {
 	}
 }
 
-func Sin(x float64) float64 {
-	return math.Sin(x)
+func Sin(opposite float64, hypotenuse float64) (float64, error) {
+	return Divide(opposite, hypotenuse)
 }
 
-func Cos(x float64) float64 {
-	return math.Cos(x)
+func Cos(adjacent float64, hypotenuse float64) (float64, error) {
+	return Divide(adjacent, hypotenuse)
 }
 
-func Tan(x float64) float64 {
-	return math.Tan(x)
+func Tan(opposite float64, adjacent float64) (float64, error) {
+	return Divide(opposite, adjacent)
 }
 
 func Sqrt(x float64) float64 {
