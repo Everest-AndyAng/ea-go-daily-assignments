@@ -1,7 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"github.com/stretchr/testify/assert"
+	"os"
 	"testing"
 )
 
@@ -14,4 +16,19 @@ func TestSouldReturnJobsFromFile(t *testing.T) {
 	result := jobsFromFile()
 
 	assert.Equal(t, jobs, result)
+}
+
+func TestShouldWriteStatusToFile(t *testing.T) {
+	var statuses []Status
+	statuses = append(statuses, Status{342, "SUCCESS"})
+	statuses = append(statuses, Status{123, "FAILURE"})
+	statuses = append(statuses, Status{78, "SUCCESS"})
+
+	writeStatusToFile(statuses)
+
+	var statusFromFile []Status
+	data, _ := os.ReadFile("status.json")
+	json.Unmarshal(data, &statusFromFile)
+
+	assert.Equal(t, statuses, statusFromFile)
 }
