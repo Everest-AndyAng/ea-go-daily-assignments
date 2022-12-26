@@ -1,6 +1,7 @@
 package song
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 
@@ -27,7 +28,15 @@ func QuerySongs() []Song {
 	return songs
 }
 
-func (sa *SongsController) GetSongs(c *gin.Context) {
-	c.JSON(http.StatusOK, sa.Songs)
+func (sc *SongsController) GetSongs(c *gin.Context) {
+	c.JSON(http.StatusOK, sc.Songs)
+}
 
+func (sc *SongsController) AddSong(c *gin.Context) {
+	song := Song{}
+	c.BindJSON(&song)
+	sc.Songs = append(sc.Songs, song)
+	fmt.Println(sc.Songs)
+
+	c.JSON(http.StatusCreated, song)
 }

@@ -11,6 +11,8 @@ func main() {
 	songsController := setupSongsController()
 
 	router.GET("/api/v1/songs", songsController.GetSongs)
+	router.POST("/api/v1/songs", songsController.AddSong)
+
 	router.Run(":8080")
 }
 
