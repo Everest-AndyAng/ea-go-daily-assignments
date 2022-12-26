@@ -2,7 +2,6 @@ package account
 
 // TDD Bank Account app
 import (
-	"errors"
 	"fmt"
 )
 
@@ -25,5 +24,14 @@ func (acc *Account) Withdraw(amount float64) error {
 	}
 	diff := amount - acc.balance
 
-	return errors.New(fmt.Sprintf("Not enough balance. Current balance is %v, shortage of %v", acc.balance, diff))
+	return &InsufficientBalanceError{acc.balance, diff}
+}
+
+type InsufficientBalanceError struct {
+	balance        float64
+	shortageAmount float64
+}
+
+func (err *InsufficientBalanceError) Error() string {
+	return fmt.Sprintf("Not enough balance. Current balance is %v, shortage of %v", err.balance, err.shortageAmount)
 }

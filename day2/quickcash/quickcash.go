@@ -26,5 +26,5 @@ func (qc *QuickCash) withdrawableAccount(amount float64) (Withdrawable, error) {
 			return account, nil
 		}
 	}
-	return nil, errors.New("No funds avalable from all accounts")
+	return nil, errors.New("No funds available from all accounts")
 }

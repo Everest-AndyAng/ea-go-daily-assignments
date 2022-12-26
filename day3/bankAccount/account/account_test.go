@@ -1,7 +1,6 @@
 package account
 
 import (
-	"fmt"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -36,7 +35,7 @@ func TestFailedWithdrawal(t *testing.T) {
 	err := acc.Withdraw(withdrawAmount)
 
 	diff := withdrawAmount - currentBalance
-	errMsg := fmt.Sprintf("Not enough balance. Current balance is %v, shortage of %v", currentBalance, diff)
+	expectedError := &InsufficientBalanceError{currentBalance, diff}
 
-	assert.Equal(t, err.Error(), errMsg)
+	assert.Equal(t, err, expectedError)
 }
