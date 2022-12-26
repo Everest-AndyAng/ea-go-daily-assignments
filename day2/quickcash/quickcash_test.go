@@ -11,8 +11,7 @@ func TestGetCashFromSavingsAccount(t *testing.T) {
 	fsa := &CreditCardAccount{0.0, 1000.0}
 
 	fqc := QuickCash{
-		fpa,
-		fsa,
+		[]Withdrawable{fpa, fsa},
 	}
 
 	amt, accType := fqc.getCash(500)
@@ -26,8 +25,7 @@ func TestGetCashFromSecondaryAccount(t *testing.T) {
 	fsa := &CreditCardAccount{0.0, 1000.0}
 
 	fqc := QuickCash{
-		fpa,
-		fsa,
+		[]Withdrawable{fpa, fsa},
 	}
 
 	amt, accType := fqc.getCash(500)
