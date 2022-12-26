@@ -19,21 +19,21 @@ func TestShouldReturnTrueWhenThereIsEnoughBalanceInSavingsAccount(t *testing.T) 
 	account := SavingsAccount{200.0, 10.0}
 	amount := 100.0
 
-	assert.Equal(t, true, account.CanWitdraw(amount))
+	assert.Equal(t, true, account.CanWithDraw(amount))
 }
 
 func TestShouldReturnFalseWhenWithdrawAmountIsOverMinimumBalanceAllowedInSavingsAccount(t *testing.T) {
 	account := SavingsAccount{100.0, 10.0}
 	amount := 100.0
 
-	assert.Equal(t, false, account.CanWitdraw(amount))
+	assert.Equal(t, false, account.CanWithDraw(amount))
 }
 
 func TestShouldReduceSavingsAccountBalanceWhenAmountIsWithdrawalIsSuccessful(t *testing.T) {
 	account := SavingsAccount{200.0, 10.0}
 	amount := 100.0
 
-	account.Withdraw(amount)
+	account.WithDraw(amount)
 
 	assert.Equal(t, 100.0, account.GetBalance())
 }
@@ -42,7 +42,7 @@ func TestShouldReturnErrorWhenAmountWithdrawalFailedFromSavingsAccount(t *testin
 	account := SavingsAccount{100.0, 10.0}
 	amount := 100.0
 
-	err := account.Withdraw(amount)
+	err := account.WithDraw(amount)
 
 	if err == nil {
 		t.Error("Expect insufficient balance error")

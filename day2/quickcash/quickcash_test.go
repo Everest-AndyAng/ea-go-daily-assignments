@@ -7,8 +7,8 @@ import (
 
 func TestGetCashFromSavingsAccount(t *testing.T) {
 
-	fpa := &FakePrimaryAccount{}
-	fsa := &FakeSecondaryAccount{}
+	fpa := &SavingsAccount{600.0, 10.0}
+	fsa := &CreditCardAccount{0.0, 1000.0}
 
 	fqc := QuickCash{
 		fpa,
@@ -22,8 +22,8 @@ func TestGetCashFromSavingsAccount(t *testing.T) {
 
 func TestGetCashFromSecondaryAccount(t *testing.T) {
 
-	fpa := &FakePrimaryAccountWithZeroBalance{}
-	fsa := &FakeSecondaryAccount{}
+	fpa := &SavingsAccount{300.0, 10.0}
+	fsa := &CreditCardAccount{0.0, 1000.0}
 
 	fqc := QuickCash{
 		fpa,

@@ -17,12 +17,12 @@ func (acc *SavingsAccount) GetIdentifier() string {
 	return "SAVINGS_ACCOUNT"
 }
 
-func (acc *SavingsAccount) CanWitdraw(amount float64) bool {
+func (acc *SavingsAccount) CanWithDraw(amount float64) bool {
 	return (acc.balance - amount) >= acc.minBalance
 }
 
-func (acc *SavingsAccount) Withdraw(amount float64) error {
-	if acc.CanWitdraw(amount) {
+func (acc *SavingsAccount) WithDraw(amount float64) error {
+	if acc.CanWithDraw(amount) {
 		acc.balance -= amount
 		return nil
 	} else {

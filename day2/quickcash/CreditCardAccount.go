@@ -14,12 +14,16 @@ func (acc *CreditCardAccount) GetBalance() float64 {
 	return acc.balance
 }
 
-func (acc *CreditCardAccount) CanWitdraw(amount float64) bool {
+func (acc *CreditCardAccount) GetIdentifier() string {
+	return "CREDITCARD_ACCOUNT"
+}
+
+func (acc *CreditCardAccount) CanWithDraw(amount float64) bool {
 	return acc.cardLimit >= math.Abs(acc.balance-amount)
 }
 
-func (acc *CreditCardAccount) Withdraw(amount float64) error {
-	if acc.CanWitdraw(amount) {
+func (acc *CreditCardAccount) WithDraw(amount float64) error {
+	if acc.CanWithDraw(amount) {
 		acc.balance -= amount
 		return nil
 	} else {
