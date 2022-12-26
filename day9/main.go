@@ -15,7 +15,11 @@ func main() {
 }
 
 func setupGin() *gin.Engine {
-	return gin.New()
+	router := gin.New()
+
+	router.Use(gin.Recovery())
+
+	return router
 }
 
 func setupSongsController() song.SongsController {
